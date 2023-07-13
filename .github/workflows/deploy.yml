@@ -3,7 +3,7 @@ run-name: 🚀 ${{ github.event.head_commit.message }} deployment triggered by $
 on:
   push:
     branches:
-    - develop
+    - main
 jobs:
   deploy-stage:
     runs-on: alpine-latest
