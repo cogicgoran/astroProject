@@ -21,4 +21,5 @@ jobs:
         run: ssh root@${{ secrets.SERVER_IP }} "npm --prefix /app install && npm --prefix /app run build"
       - name: Restart server
         run: ssh root@${{ secrets.SERVER_IP }} "rc-service app.service restart"
+      - name: CI/CD Completed
         run: echo "🟢 Server restarted 🟢"
