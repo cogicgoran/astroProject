@@ -7,7 +7,7 @@ on:
 jobs:
   deploy-stage:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 2
     steps:
       - run: echo "Preparing deploy-stage environment 🔧"
       - name: Prepare ssh tunnel to the server for the deployment
@@ -17,7 +17,8 @@ jobs:
           ssh-host: ${{ secrets.SERVER_IP }}
       - name: Pull repository
         run: ssh root@${{ secrets.SERVER_IP }} "git -C /app pull"
-      - name: 
+      - name: Build application
         run: ssh root@${{ secrets.SERVER_IP }} "npm --prefix /app install && npm --prefix /app run build"
-        # restart http-server
-      
+      - name: Restart server
+        run: ssh root@${{ secrets.SERVER_IP }} "rc-service app.service restart"
+        run: echo "🟢 Server restarted 🟢"
