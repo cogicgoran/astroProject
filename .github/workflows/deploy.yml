@@ -14,10 +14,10 @@ jobs:
         uses: kielabokkie/ssh-key-and-known-hosts-action@v1
         with:
           ssh-private-key: ${{ secrets.SSH_GITHUB_ACTION }}
-          ssh-host: ${{ env.SERVER_IP }}
+          ssh-host: ${{ secrets.SERVER_IP }}
       - name: Pull repository
-        run: ssh root@${{ env.SERVER_IP }} "cd /app && git pull ${{ github.repositoryUrl }}"
+        run: ssh root@${{ secrets.SERVER_IP }} "cd /app && git pull ${{ github.repositoryUrl }}"
       - name: 
-        run: ssh root@${{ env.SERVER_IP }} "cd /app && npm install && npm run build"
+        run: ssh root@${{ secrets.SERVER_IP }} "cd /app && npm install && npm run build"
         # restart http-server
       
