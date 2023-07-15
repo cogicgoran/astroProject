@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "start:prod": "http-server dist -p 80",
+    "start:prod": "http-server dist -p 80 -S -C /etc/letsencrypt/live/cogicgoran.dev/fullchain.pem -K /etc/letsencrypt/live/cogicgoran.dev/privkey.pem",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
